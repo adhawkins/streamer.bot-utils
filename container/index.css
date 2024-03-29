@@ -1,0 +1,11 @@
+#container {
+	width: 1920;
+	height: 1080;
+	position: relative;
+	overflow: hidden;
+}
+
+iframe {
+	position: absolute;
+	border-width: 0;
+}
