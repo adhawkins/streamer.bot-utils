@@ -137,15 +137,23 @@ function handleHost(host) {
 
 function handleRaid(raid) {
 	if (settings.showRaid) {
-		let text = '';
+		const ignoredUser = settings.ignoreRaids.find(function (user) { return user.user.toLocaleUpperCase().localeCompare(raid.user.name.toLocaleUpperCase()) == 0; });
 
-		if (raid.data.viewers) {
-			text = replaceTokens(settings.raidViewersText, raid);
+		console.log(ignoredUser);
+
+		if (!ignoredUser || ignoredUser.minViewers <= raid.data.viewers) {
+			let text = '';
+
+			if (raid.data.viewers) {
+				text = replaceTokens(settings.raidViewersText, raid);
+			} else {
+				text = replaceTokens(settings.raidText, raid);
+			}
+
+			showAlert(raid.user.avatar, text, "&nbsp;", settings.raidImage, settings.raidSound);
 		} else {
-			text = replaceTokens(settings.raidText, raid);
+			console.log(`Ignored raid from ${raid.user.name}, viewers ${raid.data.viewers} < ${ignoredUser.minViewers}`);
 		}
-
-		showAlert(raid.user.avatar, text, "&nbsp;", settings.raidImage, settings.raidSound);
 	}
 }
 

@@ -52,6 +52,21 @@ export const settings = {
     raidSound: "../media/raid.mp3",
     raidText: "Raided by %user_name%",
     raidViewersText: "Raided by %user_name% with %data_viewers% viewers",
+    ignoreRaids: [
+        {
+            user: "verstappenfan133",
+            minViewers: 2,
+        },
+        {
+            user: "fazecolin_69",
+            minViewers: 2,
+        },
+        {
+            user: "single_sanjay",
+            minViewers: 2,
+        },
+    ],
+
 
     showHost: true,
     hostSound: "../media/host.mp3",
