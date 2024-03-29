@@ -1,0 +1,57 @@
+/* Event list CSS */
+
+
+  /**
+   * Here we're using the :root selector to define any of the css variables that we want injected from the
+   * settings JSON file. As with the JS file, variables are in the format of {{settingKey}}
+   *
+   * It is also worth noting that you can write SCSS in this file, it will be compiled to normal CSS
+   * before it gets to the overlay!
+   */
+   :root {
+    /**
+     * As stated in the JavaScript file, most injected settings are "as is", the two exceptions to this are
+     * the setting types: color, and file. Color settings that are injected will be injected as an rgba string.
+     * And file settings will be injected as the full file URL. You can read more about this in the Documentation
+     */
+    --backgroundColor: black;
+    --textColor: white;
+    --backgroundImage: url("../media/eventBackground.png");
+  }
+
+  .eventList {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    background: var(--backgroundColor);
+    opacity: 0;
+  }
+
+  .eventItem {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0px;
+    padding: 4px;
+    background-image: var(--backgroundImage);
+    background-size: 100% 100%;
+    /* background-color: green; */
+    color: var(--textColor);
+    font-size: 24px;
+    align-items:center;
+  }
+
+  .username {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    width: 50%;
+    /* background-color: red; */
+    align-items:center;
+  }
+
+  .message {
+    text-align: right;
+    width: 50%;
+    /* background-color: blue; */
+    align-items:center;
+  }

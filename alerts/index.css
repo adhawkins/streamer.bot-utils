@@ -1,0 +1,96 @@
+/* Alerts CSS */
+
+  /**
+   * Here we're using the :root selector to define any of the css variables that we want injected from the
+   * settings JSON file. As with the JS file, variables are in the format of {{settingKey}}
+   *
+   * It is also worth noting that you can write SCSS in this file, it will be compiled to normal CSS
+   * before it gets to the overlay!
+   */
+   :root {
+    /**
+     * As stated in the JavaScript file, most injected settings are "as is", the two exceptions to this are
+     * the setting types: color, and file. Color settings that are injected will be injected as an rgba string.
+     * And file settings will be injected as the full file URL. You can read more about this in the Documentation
+     */
+    --backgroundColor: black;
+    --textColor: white;
+  }
+
+  * {
+    font-family: "Merriweather";
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* .alertBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    vertical-align: middle;
+  } */
+
+  .alertMessage {
+    background: var(--backgroundColor);
+    color: var(--textColor);
+    line-height: 10vh;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    container-type: inline-size;
+  }
+
+  .alertImage {
+    object-fit: cover;
+    max-width: 100vw;
+    max-height: 70vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .username {
+    font-weight: bold;
+  }
+
+  .viewers {
+    font-weight: bold;
+  }
+
+  .bottomText {
+    height: 10vh;
+    width: 100vw;
+    display: inline-block;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3cqw;
+    padding-top: 5vh;
+    text-align: center;
+  }
+
+  .avatar {
+    height: 10vh;
+    border-radius: 10vh;
+    vertical-align: middle;
+    padding-right: 2vw;
+  }
+
+  .no-avatar {
+    display: none;
+  }
+
+  .message {
+    /* font-weight: bold; */
+  }
+
