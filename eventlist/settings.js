@@ -6,7 +6,7 @@ export const settings = {
     enableEvents: true,
 
     historyAddress: "twitch-endpoint.gently.org.uk",
-    historyPort: 8002,
+    historyPort: 443,
     historyAPIKey: "d382f7f3f57e4c45a62af425c643b6be",
 
     backgroundImage: "../media/eventBackground.png",

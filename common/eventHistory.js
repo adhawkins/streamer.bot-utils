@@ -7,8 +7,7 @@ export class EventHistory {
 
 			function connectWS() {
 				if ("WebSocket" in window) {
-					// ws = new WebSocket(`ws://${host}:${port}/`);
-					const ws = new WebSocket(`wss://twitch-endpoint.gently.org.uk/websocket`);
+					const ws = new WebSocket(`wss://${host}:${port}/websocket`);
 
 					ws.onopen = function () {
 						const historyRequest = {
