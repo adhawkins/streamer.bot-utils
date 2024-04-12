@@ -13,6 +13,14 @@ export const settings = {
     shouldFade: true,
     fadeTime: 7,
     maxEvents: 4,
+    eventFilter: [
+        "bits",
+        "follow",
+        "sub",
+        "giftsub",
+        "resub",
+        "raid"
+    ],
 
     showHost: true,
     showRaid: true,

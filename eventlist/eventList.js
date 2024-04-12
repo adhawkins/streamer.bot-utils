@@ -247,7 +247,7 @@ async function getHistory() {
 	}
 
 	const eventHistory = new EventHistory();
-	const historicEvents = await eventHistory.getHistory(settings.historyAddress, settings.historyPort, settings.historyAPIKey, settings.maxEvents, 5);
+	const historicEvents = await eventHistory.getHistory(settings.historyAddress, settings.historyPort, settings.historyAPIKey, settings.maxEvents, 5, settings.eventFilter);
 
 	historicEvents.reverse().forEach(async function (event) {
 		console.log(event);

@@ -1,5 +1,5 @@
 export class EventHistory {
-	getHistory(host, port, apiKey, numEvents, retries) {
+	getHistory(host, port, apiKey, numEvents, retries, filter) {
 		let attempts = 0;
 
 		return new Promise(function (resolve, reject) {
@@ -14,6 +14,7 @@ export class EventHistory {
 							history: {
 								apikey: apiKey,
 								numevents: numEvents,
+								filter: filter,
 							}
 						}
 
@@ -34,7 +35,12 @@ export class EventHistory {
 
 					ws.onmessage = function (event) {
 						console.log(event.data);
-						resolve(JSON.parse(event.data));
+						try {
+							const response = JSON.parse(event.data)
+							resolve(response);
+						} catch (e) {
+							console.log(`Error: ${e}`)
+						}
 					}
 				} else {
 					reject("No websocket support");
