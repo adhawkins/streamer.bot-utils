@@ -1,4 +1,5 @@
-import anime from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.js';
+// import anime from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.js';
+import anime from 'https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.es.js'
 import { StreamerBotEvents } from './../common/streamerBotEvents.js';
 import { preloadImages } from './../common/preloadImages.js';
 import { EventHistory } from '../common/eventHistory.js';

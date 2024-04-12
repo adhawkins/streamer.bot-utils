@@ -1,6 +1,8 @@
-import anime from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.js';
+// import anime from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.js';
+import anime from 'https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.es.js'
 import { StreamerBotEvents } from './../common/streamerBotEvents.js';
-import 'https://unpkg.com/howler@2.2.4/dist/howler.core.min.js';
+// import 'https://unpkg.com/howler@2.2.4/dist/howler.core.min.js';
+import 'https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.core.min.js';
 import { preloadImages } from '../common/preloadImages.js';
 import { settings } from './settings.js';
 import { AlertsEnabled } from '../common/alertsEnabled.js';
