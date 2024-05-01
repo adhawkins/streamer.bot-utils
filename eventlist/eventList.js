@@ -5,10 +5,13 @@ import { preloadImages } from './../common/preloadImages.js';
 import { EventHistory } from '../common/eventHistory.js';
 import { settings } from './settings.js';
 import { AlertsEnabled } from '../common/alertsEnabled.js';
+import { UserLookup } from '../common/userLookup.js';
 
 const margin = 5;
 let fadeOutTimeout = null;
 let fadeOut = null;
+
+const lookup = new UserLookup()
 
 preloadImages([
 	settings.backgroundImage,
@@ -108,7 +111,9 @@ async function displayEvent(user, message) {
 
 async function handleFollow(user) {
 	if (settings.showFollow) {
-		displayEvent(user, 'Follow');
+		if (!settings.followMinimumAccountAge || user.account_age > settings.followMinimumAccountAge) {
+			displayEvent(user.displayName, 'Follow');
+		}
 	}
 }
 
@@ -152,8 +157,11 @@ function onCheerFunc(cheer) {
 	handleCheer(cheer.user.display_name, cheer.data.message.bits, "bits")
 }
 
-function onFollowFunc(follow) {
-	handleFollow(follow.user.display_name);
+async function onFollowFunc(follow) {
+	const lookupUser = await lookup.lookupUserByID(follow.user.id);
+	if (lookupUser) {
+		handleFollow(lookupUser);
+	}
 }
 
 function onSubFunc(sub) {
@@ -258,7 +266,10 @@ async function getHistory() {
 				break;
 
 			case "EventType.Follow":
-				handleFollow(event.name);
+				const lookupUser = await lookup.lookupUserByName(event.name);
+				if (lookupUser) {
+					handleFollow(lookupUser);
+				}
 				break;
 
 			case "EventType.Sub":

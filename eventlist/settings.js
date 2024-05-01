@@ -1,3 +1,5 @@
+import { Duration } from 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/+esm';
+
 export const settings = {
     sbHost: "localhost",
     sbMainPort: 8060,
@@ -23,11 +25,18 @@ export const settings = {
     ],
 
     showHost: true,
+
     showRaid: true,
+
     showFollow: true,
+    followMinimumAccountAge: Duration.fromObject({ hours: 1 }),
+
     showSub: true,
+
     showResub: true,
+
     showGiftSub: true,
+
     showCheer: true,
 };
 

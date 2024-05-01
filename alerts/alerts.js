@@ -161,11 +161,13 @@ function handleRaid(raid) {
 
 function handleFollow(follow) {
 	if (settings.showFollow) {
-		let text = '';
+		if (!settings.followMinimumAccountAge || follow.user.account_age > settings.followMinimumAccountAge) {
+			let text = '';
 
-		text = replaceTokens(settings.followText, follow);
+			text = replaceTokens(settings.followText, follow);
 
-		showAlert(follow.user.avatar, text, "&nbsp;", settings.followImage, settings.followSound);
+			showAlert(follow.user.avatar, text, "&nbsp;", settings.followImage, settings.followSound);
+		}
 	}
 }
 

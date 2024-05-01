@@ -155,7 +155,7 @@ export class StreamerBotEvents {
 
 	async doCallback(callbackFunc, userID, wsData) {
 		if (callbackFunc) {
-			const lookupUser = await this.lookup.lookupUser(userID);
+			const lookupUser = await this.lookup.lookupUserByID(userID);
 			if (lookupUser) {
 				const callbackData = {
 					user: {
@@ -163,6 +163,7 @@ export class StreamerBotEvents {
 						name: lookupUser.name,
 						display_name: lookupUser.displayName,
 						avatar: lookupUser.profilePictureUrl,
+						account_age: lookupUser.account_age,
 					},
 					data: wsData.data,
 				};

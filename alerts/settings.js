@@ -1,3 +1,5 @@
+import { Duration } from 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/+esm';
+
 export const settings = {
     sbHost: "localhost",
     sbMainPort: 8060,
@@ -41,6 +43,7 @@ export const settings = {
     followImage: "../media/follow.png",
     followSound: "../media/follow.mp3",
     followText: "%user_name% has followed",
+    followMinimumAccountAge: Duration.fromObject({ hours: 1 }),
 
     showCheer: true,
     cheerImage: "../media/cheer.png",
