@@ -83,7 +83,7 @@
     height: 10vh;
     border-radius: 10vh;
     vertical-align: middle;
-    padding-right: 2vw;
+    margin-right: 2vw;
   }
 
   .no-avatar {
