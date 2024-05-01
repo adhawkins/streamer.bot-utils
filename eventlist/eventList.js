@@ -70,12 +70,12 @@ async function displayEvent(user, message) {
 
 		//animate the new item to be opaque.
 
-		anime({
+		await anime({
 			targets: node,
 			opacity: 1,
 			duration: 1000,
 			easing: "easeInOutQuad"
-		});
+		}).finished;
 
 		while (eventList.children.length > settings.maxEvents) {
 			let item = eventList.children[eventList.children.length - 1];
