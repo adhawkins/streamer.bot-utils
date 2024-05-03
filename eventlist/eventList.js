@@ -6,6 +6,7 @@ import { EventHistory } from '../common/eventHistory.js';
 import { settings } from './settings.js';
 import { AlertsEnabled } from '../common/alertsEnabled.js';
 import { UserLookup } from '../common/userLookup.js';
+import { Logger } from '../common/logger.js';
 
 const margin = 5;
 let fadeOutTimeout = null;
@@ -110,46 +111,62 @@ async function displayEvent(user, message) {
 }
 
 async function handleFollow(user) {
+	logger.sendMessage(`Follow from '${user.displayName}' - age: ${user.account_age.as("hours")}, minimum: ${settings.followMinimumAccountAge.as("hours")}`);
+
 	if (settings.showFollow) {
 		if (!settings.followIgnoreUsers.find(function (ignoreUser) { return ignoreUser.toLocaleUpperCase().localeCompare(user.name.toLocaleUpperCase()) == 0; })) {
 			if (!settings.followMinimumAccountAge || user.account_age > settings.followMinimumAccountAge) {
 				displayEvent(user.displayName, 'Follow');
+			} else {
+				logger.sendMessage(`Account '${user.displayName}' is only ${user.account_age.as("hours")} hours old`);
 			}
 		}
 	}
 }
 
 async function handleHost(user, viewers) {
+	logger.sendMessage(`Host by '${user}' - ${viewers} viewers`);
+
 	if (settings.showHost) {
 		displayEvent(user, `Host ${viewers ? '(' + viewers + ')' : ''}`);
 	}
 }
 
 async function handleRaid(user, viewers) {
+	logger.sendMessage(`Raid by '${user}' - ${viewers} viewers`);
+
 	if (settings.showRaid) {
 		displayEvent(user, `Raid ${viewers ? '(' + viewers + ')' : ''}`);
 	}
 }
 
 async function handleCheer(user, amount, currency) {
+	logger.sendMessage(`'${user}' has donated ${amount} ${currency}`);
+
 	if (settings.showCheer) {
 		displayEvent(user, `${amount} ${currency}`);
 	}
 }
 
 async function handleSub(user, level) {
+	logger.sendMessage(`'${user}' has subscribed at tier ${level}`);
+
 	if (settings.showSub) {
 		displayEvent(user, `Sub ${level ? '(Tier ' + level + ')' : '(Prime)'}`);
 	}
 }
 
 async function handleGiftSub(user, level) {
+	logger.sendMessage(`'${user}' has gifted a sub at tier ${level}`);
+
 	if (settings.showGiftSub) {
 		displayEvent(user, `Gift sub ${level ? '(Tier ' + level + ')' : ''}`);
 	}
 }
 
 async function handleResub(user, months) {
+	logger.sendMessage(`'${user}' has resubbed for ${months} months`);
+
 	if (settings.showResub) {
 		displayEvent(user, `Re-sub (x${months})`);
 	}
@@ -308,3 +325,5 @@ eventsEnabled.getEnabled(settings.sbHost, settings.sbEnableDisablePort, 10)
 		console.log(`Enabled error: '${error}'`);
 		getHistory();
 	});
+
+const logger = new Logger("twitch-endpoint.gently.org.uk", 443, "eventlist");

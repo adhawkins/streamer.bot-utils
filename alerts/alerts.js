@@ -6,6 +6,7 @@ import 'https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.core.min.js';
 import { preloadImages } from '../common/preloadImages.js';
 import { settings } from './settings.js';
 import { AlertsEnabled } from '../common/alertsEnabled.js';
+import { Logger } from '../common/logger.js';
 
 preloadImages([
 	settings.subImage,
@@ -124,6 +125,8 @@ function showAlert(avatar, text1, text2, image, sound) {
 }
 
 function handleHost(host) {
+	logger.sendMessage(`handleHost: '${JSON.stringify(host)}`)
+
 	if (settings.showHost) {
 		let text = '';
 
@@ -138,6 +141,8 @@ function handleHost(host) {
 }
 
 function handleRaid(raid) {
+	logger.sendMessage(`Raid from '${raid.user.name}' - viewers: ${raid.data.viewers}`);
+
 	if (settings.showRaid) {
 		const ignoredUser = settings.ignoreRaids.find(function (user) { return user.user.toLocaleUpperCase().localeCompare(raid.user.name.toLocaleUpperCase()) == 0; });
 
@@ -160,6 +165,8 @@ function handleRaid(raid) {
 }
 
 function handleFollow(follow) {
+	logger.sendMessage(`Follow from '${follow.user.name}' - age: ${follow.user.account_age.as("hours")}, minimum: ${settings.followMinimumAccountAge.as("hours")}`);
+
 	if (settings.showFollow) {
 		if (!settings.followIgnoreUsers.find(function (user) { return user.toLocaleUpperCase().localeCompare(follow.user.name.toLocaleUpperCase()) == 0; })) {
 			if (!settings.followMinimumAccountAge || follow.user.account_age > settings.followMinimumAccountAge) {
@@ -168,12 +175,16 @@ function handleFollow(follow) {
 				text = replaceTokens(settings.followText, follow);
 
 				showAlert(follow.user.avatar, text, "&nbsp;", settings.followImage, settings.followSound);
+			} else {
+				logger.sendMessage(`Account '${follow.user.name}' is only ${follow.user.account_age.as("hours")} hours old`)
 			}
 		}
 	}
 }
 
 function handleSub(sub) {
+	logger.sendMessage(`Sub from '${sub.user.name}' - tier: ${sub.data.subTier}`);
+
 	if (settings.showSub) {
 		let text = '';
 
@@ -188,6 +199,8 @@ function handleSub(sub) {
 }
 
 function handleGiftSub(gift) {
+	logger.sendMessage(`Gift sub from '${gift.user.name}' to '${gift.data.recipientUsername}' - tier: ${gift.data.subTier}`);
+
 	if (settings.showGiftSub) {
 		let text = '';
 
@@ -202,6 +215,8 @@ function handleGiftSub(gift) {
 }
 
 function handleResub(resub) {
+	logger.sendMessage(`Resub from '${resub.user.name}' for ${resub.data.cumulativeMonths} months - '${resub.data.message}'`);
+
 	if (settings.showResub) {
 		let text = '';
 
@@ -218,6 +233,8 @@ function handleResub(resub) {
 }
 
 function handleCheer(cheer) {
+	logger.sendMessage(`'${cheer.user.name}' has donated ${cheer.data.message.bits} bits - '${cheer.data.message.message}'`);
+
 	if (settings.showCheer) {
 		let text = '';
 
@@ -225,8 +242,8 @@ function handleCheer(cheer) {
 
 		let cheerMessage = "&nbsp;";
 
-		if (settings.showCheerMessage && cheer.message) {
-			cheerMessage = cheer.message;
+		if (settings.showCheerMessage && cheer.data.message.message) {
+			cheerMessage = cheer.data.message.message;
 		}
 
 		showAlert(cheer.user.avatar, text, cheerMessage, settings.cheerImage, settings.cheerSound);
@@ -367,3 +384,5 @@ eventsEnabled.getEnabled(settings.sbHost, settings.sbEnableDisablePort, 10)
 	.catch(function (error) {
 		console.log(`Enabled error: '${error}'`);
 	});
+
+const logger = new Logger("twitch-endpoint.gently.org.uk", 443, "alerts");
