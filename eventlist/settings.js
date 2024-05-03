@@ -30,6 +30,11 @@ export const settings = {
 
     showFollow: true,
     followMinimumAccountAge: Duration.fromObject({ hours: 1 }),
+    followIgnoreUsers: [
+        "single_sanjay",
+        "verstappenfan133",
+        "fazecolin_69",
+    ],
 
     showSub: true,
 

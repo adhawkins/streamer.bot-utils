@@ -111,8 +111,10 @@ async function displayEvent(user, message) {
 
 async function handleFollow(user) {
 	if (settings.showFollow) {
-		if (!settings.followMinimumAccountAge || user.account_age > settings.followMinimumAccountAge) {
-			displayEvent(user.displayName, 'Follow');
+		if (!settings.followIgnoreUsers.find(function (ignoreUser) { return ignoreUser.toLocaleUpperCase().localeCompare(user.name.toLocaleUpperCase()) == 0; })) {
+			if (!settings.followMinimumAccountAge || user.account_age > settings.followMinimumAccountAge) {
+				displayEvent(user.displayName, 'Follow');
+			}
 		}
 	}
 }

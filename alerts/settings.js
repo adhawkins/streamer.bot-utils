@@ -44,6 +44,11 @@ export const settings = {
     followSound: "../media/follow.mp3",
     followText: "%user_name% has followed",
     followMinimumAccountAge: Duration.fromObject({ hours: 1 }),
+    followIgnoreUsers: [
+        "single_sanjay",
+        "verstappenfan133",
+        "fazecolin_69",
+    ],
 
     showCheer: true,
     cheerImage: "../media/cheer.png",

@@ -161,12 +161,14 @@ function handleRaid(raid) {
 
 function handleFollow(follow) {
 	if (settings.showFollow) {
-		if (!settings.followMinimumAccountAge || follow.user.account_age > settings.followMinimumAccountAge) {
-			let text = '';
+		if (!settings.followIgnoreUsers.find(function (user) { return user.toLocaleUpperCase().localeCompare(follow.user.name.toLocaleUpperCase()) == 0; })) {
+			if (!settings.followMinimumAccountAge || follow.user.account_age > settings.followMinimumAccountAge) {
+				let text = '';
 
-			text = replaceTokens(settings.followText, follow);
+				text = replaceTokens(settings.followText, follow);
 
-			showAlert(follow.user.avatar, text, "&nbsp;", settings.followImage, settings.followSound);
+				showAlert(follow.user.avatar, text, "&nbsp;", settings.followImage, settings.followSound);
+			}
 		}
 	}
 }
