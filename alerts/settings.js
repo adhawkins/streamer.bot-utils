@@ -31,7 +31,7 @@ export const settings = {
     giftSubSound: "../media/giftsub.mp3",
     giftSubImage: "../media/giftsub.png",
     giftText: "%user_name% has gifted a sub to %data_recipientDisplayName%",
-    giftLevelText: "%user_name% has gifted a Tier %data_subTier% sub to %data_recipientDisplayName%",
+    giftLevelText: "%user_name% has gifted a Tier %data_subTier% sub to %data_recipient_name%",
 
     showGiftBomb: true,
     giftBombSound: "../media/giftbomb.mp3",
@@ -63,7 +63,7 @@ export const settings = {
     ignoreRaids: [
         {
             user: "verstappenfan133",
-            minViewers: 2,
+            minViewers: 20,
         },
         {
             user: "fazecolin_69",

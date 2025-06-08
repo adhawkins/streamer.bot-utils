@@ -199,7 +199,7 @@ function handleSub(sub) {
 }
 
 function handleGiftSub(gift) {
-	logger.sendMessage(`Gift sub from '${gift.user.name}' to '${gift.data.recipientUsername}' - tier: ${gift.data.subTier}`);
+	logger.sendMessage(`Gift sub from '${gift.user.name}' to '${gift.data.recipient.name}' - tier: ${gift.data.subTier}`);
 
 	if (settings.showGiftSub) {
 		let text = '';

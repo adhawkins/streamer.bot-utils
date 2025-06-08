@@ -49,13 +49,13 @@ export class StreamerBotEvents {
 					// check for events to trigger
 					if (wsdata.event.source == 'Twitch') {
 						if (wsdata.event.type == 'Sub') {
-							await this.doCallback(this.onSubFunc, wsdata.data.userId, wsdata);
+							await this.doCallback(this.onSubFunc, wsdata.data.user.id, wsdata);
 						} else if (wsdata.event.type == 'ReSub') {
-							await this.doCallback(this.onResubFunc, wsdata.data.userId, wsdata);
+							await this.doCallback(this.onResubFunc, wsdata.data.user.id, wsdata);
 						} else if (wsdata.event.type == 'GiftSub') {
-							await this.doCallback(this.onGiftSubFunc, wsdata.data.userId, wsdata);
+							await this.doCallback(this.onGiftSubFunc, wsdata.data.user.id, wsdata);
 						} else if (wsdata.event.type == 'GiftBomb') {
-							await this.doCallback(this.onGiftBombFunc, wsdata.data.userId, wsdata);
+							await this.doCallback(this.onGiftBombFunc, wsdata.data.user.id, wsdata);
 						} else if (wsdata.event.type == 'Follow') {
 							await this.doCallback(this.onFollowFunc, wsdata.data.user_id, wsdata);
 						} else if (wsdata.event.type == 'Cheer') {
