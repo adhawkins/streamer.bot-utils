@@ -53,7 +53,8 @@ export const settings = {
     showCheer: true,
     cheerImage: "../media/cheer.png",
     cheerSound: "../media/cheer.mp3",
-    cheerText: "%user_name% has donated %data_message_bits% bits",
+    cheerText: "%user_name% has donated %data_bits% bits",
+    // showCheerMessage: true,
 
     showRaid: true,
     raidImage: "../media/raid.png",

@@ -1,4 +1,4 @@
-import { ApiClient } from 'https://cdn.jsdelivr.net/npm/@twurple/api@7.0.10/+esm';
+import { ApiClient } from 'https://cdn.jsdelivr.net/npm/@twurple/api@8.2.0/+esm';
 import { AppTokenAuthProvider } from 'https://cdn.jsdelivr.net/npm/@twurple/auth@7.0.10/+esm';
 import { DateTime } from 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/+esm';
 

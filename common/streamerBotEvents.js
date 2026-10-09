@@ -57,9 +57,9 @@ export class StreamerBotEvents {
 						} else if (wsdata.event.type == 'GiftBomb') {
 							await this.doCallback(this.onGiftBombFunc, wsdata.data.user.id, wsdata);
 						} else if (wsdata.event.type == 'Follow') {
-							await this.doCallback(this.onFollowFunc, wsdata.data.user_id, wsdata);
+							await this.doCallback(this.onFollowFunc, wsdata.data.targetUser.id, wsdata);
 						} else if (wsdata.event.type == 'Cheer') {
-							await this.doCallback(this.onCheerFunc, wsdata.data.message.userId, wsdata);
+							await this.doCallback(this.onCheerFunc, wsdata.data.user.id, wsdata);
 						} else if (wsdata.event.type == 'Raid') {
 							await this.doCallback(this.onRaidFunc, wsdata.data.from_broadcaster_user_id, wsdata);
 						} else if (wsdata.event.type == 'Host') {

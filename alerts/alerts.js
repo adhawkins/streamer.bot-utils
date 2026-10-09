@@ -233,7 +233,7 @@ function handleResub(resub) {
 }
 
 function handleCheer(cheer) {
-	logger.sendMessage(`'${cheer.user.name}' has donated ${cheer.data.message.bits} bits - '${cheer.data.message.message}'`);
+	logger.sendMessage(`'${cheer.user.name}' has donated ${cheer.data.bits} bits - '${cheer.data.text}'`);
 
 	if (settings.showCheer) {
 		let text = '';
@@ -242,8 +242,8 @@ function handleCheer(cheer) {
 
 		let cheerMessage = "&nbsp;";
 
-		if (settings.showCheerMessage && cheer.data.message.message) {
-			cheerMessage = cheer.data.message.message;
+		if (settings.showCheerMessage && cheer.data.text) {
+			cheerMessage = cheer.data.text;
 		}
 
 		showAlert(cheer.user.avatar, text, cheerMessage, settings.cheerImage, settings.cheerSound);
@@ -301,19 +301,19 @@ function onHostFunc(host) {
 function onHypeTrainStartFunc(hypeTrainStart) {
 	// console.log(`onHypeTrainStart: '${JSON.stringify(hypeTrainStart)}'`);
 
-	handleHypeTrainStart(hypeTrainStart);
+	// handleHypeTrainStart(hypeTrainStart);
 }
 
 function onHypeTrainLevelUpFunc(hypeTrainLevelUp) {
 	// console.log(`onHypeTrainLevelUp: '${JSON.stringify(hypeTrainLevelUp)}'`);
 
-	handleHypeTrainLevelUp(hypeTrainLevelUp);
+	// handleHypeTrainLevelUp(hypeTrainLevelUp);
 }
 
 function onHypeTrainEndFunc(hypeTrainEnd) {
 	// console.log(`onHypeTrainEnd: '${JSON.stringify(hypeTrainEnd)}'`);
 
-	handleHypeTrainEnd(hypeTrainEnd);
+	// handleHypeTrainEnd(hypeTrainEnd);
 }
 
 function onCustomEventFunc(customEvent) {
